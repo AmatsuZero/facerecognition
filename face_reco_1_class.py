@@ -35,7 +35,8 @@ data_transforms = {
     ]),
 }
 
-data_dir = './dataset/'
+data_dir = os.path.dirname(os.path.realpath(__file__))
+data_dir = os.path.join(data_dir, 'dataset/')
 image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                           data_transforms[x])
                   for x in ['train', 'val']}
@@ -186,5 +187,5 @@ model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
                        num_epochs=20)
 
 model_path = "trained_model.pt"
-print("Saving model "+model_path);
+print("Saving model "+model_path)
 torch.save(model_ft.state_dict(), model_path)

@@ -29,7 +29,9 @@ data_transforms = {
     ]),
 }
 
-data_dir = './dataset/'
+data_dir = os.path.dirname(os.path.realpath(__file__))
+data_dir = os.path.join(data_dir, 'dataset/')
+
 image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                           data_transforms[x])
                   for x in ['train', 'val']}
@@ -98,7 +100,7 @@ model_ft = InceptionResnetV1(pretrained='vggface2', device=device, classify= Tru
 model_ft = model_ft.to(device)
 
 model_path = "trained_model.pt"
-print("Loading model "+model_path);
+print("Loading model "+model_path)
 model_ft.load_state_dict(torch.load(model_path))
 visualize_model(model_ft)
 while True:

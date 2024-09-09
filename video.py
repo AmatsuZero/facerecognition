@@ -2,12 +2,12 @@
 ## https://realpython.com/face-detection-in-python-using-a-webcam/
 
 import time
-
+import os
 import cv2
 
 video_capture = cv2.VideoCapture(0)
-
-folder = "./img/nuove"
+folder = os.path.dirname(os.path.realpath(__file__))
+folder = os.path.join(folder, "images/")
 
 while True:
     # Capture frame-by-frame
