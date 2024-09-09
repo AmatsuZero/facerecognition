@@ -1,10 +1,12 @@
 ## Original source from here:
 ## https://realpython.com/face-detection-in-python-using-a-webcam/
 
-import cv2
 import time
 
+import cv2
+
 video_capture = cv2.VideoCapture(0)
+
 folder = "./img/nuove"
 
 while True:
@@ -19,7 +21,8 @@ while True:
         timestr = time.strftime("%Y-%m-%d %H:%M:%S")
         print("Saving image: "+timestr + ".jpeg")
         filename = folder + timestr + ".jpeg"
-        cv2.imwrite(filename, frame)
+        if not cv2.imwrite(filename, frame):
+            print("Error saving image")
     if key == 13: ## enter key
         timestr = time.strftime("%Y-%m-%d %H:%M:%S")
         print("Saving image: "+timestr + ".jpeg")
